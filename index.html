@@ -23,6 +23,7 @@
             top: 0;
             bottom: 0;
             right: 0;
+            color:white;
         }
 
         div {
@@ -37,7 +38,7 @@
             left: 50%;
             transform: translate(-50%, 0%);
             height: 100dvh;
-            
+
         }
 
 
@@ -69,7 +70,7 @@
             90% {
                 opacity: 1;
             }
-            
+
             0% {
                 opacity: 0;
             }
@@ -101,11 +102,11 @@
 
 
     <div id="container">
-        <video id="video" class='fade-in-out-image' width="auto" height="100dvh" muted>
+        <!--<video id="video" class='fade-in-out-image' width="auto" height="100dvh" muted>
             <source src="" type="video/mp4">
-        </video>
+        </video>-->
         <img id="image" class='fade-in-out-image' src="resources/ms1.jpg">
-        
+
     </div>
 
     <div id="overlay"></div>
@@ -122,145 +123,164 @@
 
         let files = [
 
-        //bearings
-        'ms1.jpg',
-        'bearingcut.mp4',
-        'frustum.jpg',
-        'bearing2cut.mp4',
+            //bearings
+            'ms1.jpg',
+            'bearingcut.mp4',
+            'frustum.jpg',
+            'bearing2cut.mp4',
 
-        //flux pump, fusion
-        'fluxpump2.jpg',
-        'dynamo.mp4', 
-        'SundayCut1.mp4',
-        'rm1.jpg',
-        'SundayCut2.mp4',
-
-
-        //motors
-        'kh1.jpg',
-        'explode.mp4',
-        'scmotor.jpg',
-        'motorruncut.mp4',
-        'rodcoil.jpg',
-        'opera.gif',
-        'hil.mp4', 
-        'syncmotor.jpg',
-
-        //sensing
-        'robot.jpg',
-        'jb1.jpg',
-        'pipe1.mp4',
-        'ndttool.jpg',
-        'pipe2.mp4',
-
-        
-        //materials
-        'ah1.jpg',
-        'furnace.jpg',
-        'sg1.jpg',
-        'sputter.jpg',
-        'sg2.jpg',
-        'js2.jpg',
-        'js1.jpg',
-        'sg3.jpg',
-
-        //SEM
-        'ss1.jpg',
-        'ironsand.jpg',
-        'ah2.jpg',
-        'ybco.jpg',
-
-        //supercurrent
-        'supercurrent.jpg',
-        'wire.mp4',
-        'as1.jpg',
-        'supercurrent2.jpg',
-
-        //MRI
-        'headmri.jpg',
-        'breakfast3.mp4',
-        'head_mri.jpg',
-        'headmri.mp4',
-        '3TMRI.jpg',
-        'mri.jpg',
-        '3TMRI2.jpg',
+            //flux pump, fusion
+            'fluxpump2.jpg',
+            'dynamo.mp4',
+            'SundayCut1.mp4',
+            'rm1.jpg',
+            'SundayCut2.mp4',
 
 
-        //cable
-        'braidedcable.jpg',
-        'md1.jpg',
-        'roebel.mp4',
-        'roebelcable.jpg',
-        'roebelcoil.jpg',
-        'ys2.jpg',
-        'sctransformer.jpg',
-        'ys1.jpg',
-    
-                    
-        //maglev
-        'maglevcut.mp4',
-        'maglevtrain.jpg',
-        'kiwinet.mp4',
-        
-        //people
-        'groupphoto.jpg',
-        'graduation2022.jpg',
-        'women.jpg',
-        'graduation2023.mp4',
+            //motors
+            'kh1.jpg',
+            'explode.mp4',
+            'scmotor.jpg',
+            'motorruncut.mp4',
+            'rodcoil.jpg',
+            'opera.gif',
+            'hil.mp4',
+            'syncmotor.jpg',
 
-        //space
-        'spacethruster.jpg',
-        'cubsat.mp4',       
-        'thruster.jpg',
-        
-                      
-    ];
+            //sensing
+            'robot.jpg',
+            'jb1.jpg',
+            'pipe1.mp4',
+            'ndttool.jpg',
+            'pipe2.mp4',
+
+
+            //materials
+            'ah1.jpg',
+            'furnace.jpg',
+            'sg1.jpg',
+            'sputter.jpg',
+            'sg2.jpg',
+            'js2.jpg',
+            'js1.jpg',
+            'sg3.jpg',
+
+            //SEM
+            'ss1.jpg',
+            'ironsand.jpg',
+            'ah2.jpg',
+            'ybco.jpg',
+
+            //supercurrent
+            'supercurrent.jpg',
+            'wire.mp4',
+            'as1.jpg',
+            'supercurrent2.jpg',
+
+            //MRI
+            'headmri.jpg',
+            'breakfast3.mp4',
+            'head_mri.jpg',
+            'headmri.mp4',
+            '3TMRI.jpg',
+            'mri.jpg',
+            '3TMRI2.jpg',
+
+
+            //cable
+            'braidedcable.jpg',
+            'md1.jpg',
+            'roebel.mp4',
+            'roebelcable.jpg',
+            'roebelcoil.jpg',
+            'ys2.jpg',
+            'sctransformer.jpg',
+            'ys1.jpg',
+
+
+            //maglev
+            'maglevcut.mp4',
+            'maglevtrain.jpg',
+            'kiwinet.mp4',
+
+            //people
+            'groupphoto.jpg',
+            'graduation2022.jpg',
+            'women.jpg',
+            'graduation2023.mp4',
+
+            //space
+            'spacethruster.jpg',
+            'cubsat.mp4',
+            'thruster.jpg',
+
+
+        ];
 
         let img = document.getElementById('image');
-        const vid = document.getElementById('video');
+        //let vid = document.getElementById('video');
+        let vid;
 
         let i = 1;
 
-       let img2;
-        
-        setInterval(function () {
+        let img2;
+        let vid2;
 
-            console.log(files[i]);
-            if (files[i].endsWith('jpg') || files[i].endsWith('gif') || files[i].endsWith('png')) {
-                
-                img2=new Image();
-                img2.className='fade-in-out-image';
-              
-                img2.src = folder+files[i];
-               
-                img.remove();
-                img=img2;
-                document.getElementById('container').appendChild(img);
-               
+        let assets = [];
+
+        for (j = 0; j < files.length; j++) {
+            if (files[j].endsWith('jpg') || files[j].endsWith('gif') || files[j].endsWith('png')) {
+
+                img2 = new Image();
+                img2.className = 'fade-in-out-image';
+
+                img2.src = folder + files[j];
+                assets.push(img2);
             }
-
-            else if(files[i].endsWith('mp4')){
-                vid.style.animationName = "none";
-                
-                vid.src = folder+files[i];
-                
-                requestAnimationFrame(() => {
-                    setTimeout(() => {
-                        vid.style.animationName = ""
-                    }, 0);
-                });
-                
-                vid.play();
+            else if (files[j].endsWith('mp4')) {
+                vid2 = document.createElement('video');
+                vid2.className = 'fade-in-out-image';
+                vid2.src = folder + files[j];
+                vid2.muted = true;
+                assets.push(vid2);
             }
-
-            i++;
-            if (i == files.length) {
-                i = 0;
-            }
-
-        }, 10000);
+            //console.log(files[j]+" loaded");
+            document.getElementById('overlay').innerText=files[j]+" loaded";
+        }
         
+        document.getElementById('overlay').innerText="";
+        //console.log(assets);
+
         
+         setInterval(function () {
+ 
+             //console.log(files[i]);
+             if (files[i].endsWith('jpg') || files[i].endsWith('gif') || files[i].endsWith('png')) {
+                 
+                 img.remove();
+                 img=assets[i];
+                 document.getElementById('container').appendChild(img);
+                
+             }
+ 
+             else if(files[i].endsWith('mp4')){
+
+                 if(vid){
+                    vid.remove();
+                 }   
+                 vid=assets[i];
+                 document.getElementById('container').appendChild(vid);
+                 vid.play();
+             }
+ 
+             i++;
+             if (i == files.length) {
+                 i = 0;
+             }
+ 
+         }, 10000);
+         
+
 
     </script>
 
