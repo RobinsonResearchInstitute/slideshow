@@ -3,6 +3,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="James Storey">
     <title>Robinson Research Institute</title>
     <style>
         * {
@@ -64,12 +65,12 @@
             10% {
                 opacity: 1;
             }
-            
+
             90% {
                 opacity: 1;
             }
             
-            100% {
+            0% {
                 opacity: 0;
             }
 
@@ -211,41 +212,44 @@
         'spacethruster.jpg',
         'cubsat.mp4',       
         'thruster.jpg',
+        
                       
     ];
 
-        const img = document.getElementById('image');
+        let img = document.getElementById('image');
         const vid = document.getElementById('video');
 
         let i = 1;
 
-       
-
+       let img2;
+        
         setInterval(function () {
 
             console.log(files[i]);
             if (files[i].endsWith('jpg') || files[i].endsWith('gif') || files[i].endsWith('png')) {
-                img.style.animationName = "none";
-                img.src = "data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw=="
-                img.src = folder+files[i];
-
-                requestAnimationFrame(() => {
-                    setTimeout(() => {
-                        img.style.animationName = ""
-                    }, 0);
-                });
+                
+                img2=new Image();
+                img2.className='fade-in-out-image';
+              
+                img2.src = folder+files[i];
+               
+                img.remove();
+                img=img2;
+                document.getElementById('container').appendChild(img);
+               
             }
 
             else if(files[i].endsWith('mp4')){
                 vid.style.animationName = "none";
-
+                
                 vid.src = folder+files[i];
-
+                
                 requestAnimationFrame(() => {
                     setTimeout(() => {
                         vid.style.animationName = ""
                     }, 0);
                 });
+                
                 vid.play();
             }
 
@@ -255,7 +259,7 @@
             }
 
         }, 10000);
-
+        
         
 
     </script>
