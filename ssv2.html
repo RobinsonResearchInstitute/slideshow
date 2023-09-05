@@ -124,16 +124,16 @@
 
         //bearings
         'ms1.jpg',
-        //'bearingcut.mp4',
+        'bearingcut.mp4',
         'frustum.jpg',
-        //'bearing2cut.mp4',
+        'bearing2cut.mp4',
 
         //flux pump, fusion
         'fluxpump2.jpg',
-        //'dynamo.mp4', 
-        //'SundayCut1.mp4',
+        'dynamo.mp4', 
+        'SundayCut1.mp4',
         'rm1.jpg',
-        //'SundayCut2.mp4',
+        'SundayCut2.mp4',
 
 /*
         //motors
@@ -216,12 +216,12 @@
                       
     ];
 
-        const img = document.getElementById('image');
+        let img = document.getElementById('image');
         const vid = document.getElementById('video');
 
         let i = 1;
 
-       
+       let img2;
         
         setInterval(function () {
 
@@ -229,9 +229,16 @@
             if (files[i].endsWith('jpg') || files[i].endsWith('gif') || files[i].endsWith('png')) {
                 //img.style.animationName = "none";
                 //img.src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==";
+                img2=new Image();
+                
                 vid.style.opacity=0;
-                img.style.opacity=0;
-                img.src = folder+files[i];
+                //img.style.opacity=0;
+                img2.src = folder+files[i];
+                //console.log(img2);
+                img.remove();
+                img=img2;
+                document.getElementById('container').appendChild(img);
+                //img.remove();
                 img.style.opacity=1;
                 /*
                 requestAnimationFrame(() => {
