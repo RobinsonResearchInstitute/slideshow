@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Robinson Research Institute</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: black;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            right: 0;
+        }
+
+        div {
+            position: relative;
+        }
+
+        img,
+        video {
+            opacity: 0;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translate(-50%, 0%);
+            height: 100dvh;
+            
+        }
+
+
+
+        #logo {
+            font-size: 1.5rem;
+            color: white;
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            padding: 1rem;
+            background-color: rgb(0, 71, 48);
+        }
+
+        /* Fading animation */
+        .fade-in-out-image {
+            animation: fadeInOut 10s;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+
+
+        }
+
+
+
+
+        /* On smaller screens, decrease text size */
+
+        @media only screen and (max-width: 600px) {
+            #logo {
+                font-size: 3vw;
+                padding: 3vw;
+            }
+
+            img,
+            video {
+                width: 100%;
+                height: auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div id="container">
+        <video id="video" class='fade-in-out-image' width="auto" height="100dvh" muted>
+            <source src="" type="video/mp4">
+        </video>
+        <img id="image" class='fade-in-out-image' src="resources/ms1.jpg">
+        
+    </div>
+
+    <div id="overlay"></div>
+
+    <div id="logo">
+        Robinson Research Institute
+    </div>
+
+
+
+    <script>
+
+        let folder = 'resources/';
+
+        let files = [
+
+        //bearings
+        'ms1.jpg',
+        'bearingcut.mp4',
+        'frustum.jpg',
+        'bearing2cut.mp4',
+
+        //flux pump, fusion
+        'fluxpump2.jpg',
+        'dynamo.mp4', 
+        'SundayCut1.mp4',
+        'rm1.jpg',
+        'SundayCut2.mp4',
+
+
+        //motors
+        'kh1.jpg',
+        'explode.mp4',
+        'scmotor.jpg',
+        'motorruncut.mp4',
+        'rodcoil.jpg',
+        'opera.gif',
+        'hil.mp4', 
+        'syncmotor.png',
+
+        //sensing
+        'robot.jpg',
+        'jb1.jpg',
+        'pipe1.mp4',
+        'ndttool.jpg',
+        'pipe2.mp4',
+
+        
+        //materials
+        'ah1.jpg',
+        'furnace.jpg',
+        'sg1.jpg',
+        'sputter.jpg',
+        'sg2.jpg',
+        'js2.jpg',
+        'js1.jpg',
+        'sg3.jpg',
+
+        //SEM
+        'ss1.jpg',
+        'ironsand.jpg',
+        'ah2.jpg',
+        'ybco.jpg',
+
+        //supercurrent
+        'supercurrent.jpg',
+        'wire.mp4',
+        'as1.jpg',
+        'supercurrent2.jpg',
+
+        //MRI
+        'headmri.jpg',
+        'breakfast3.mp4',
+        'head_mri.jpg',
+        'headmri.mp4',
+        '3TMRI.jpg',
+        'mri.jpg',
+        '3TMRI2.jpg',
+
+
+        //cable
+        'braidedcable.jpg',
+        'md1.jpg',
+        'roebel.mp4',
+        'roebelcable.jpg',
+        'roebelcoil.jpg',
+        'ys2.jpg',
+        'sctransformer.jpg',
+        'ys1.jpg',
+    
+                    
+        //maglev
+        'maglevcut.mp4',
+        'maglevtrain.jpg',
+        'kiwinet.mp4',
+        
+        //people
+        'groupphoto.jpg',
+        'graduation2022.jpg',
+        'women.jpg',
+        'graduation2023.mp4',
+
+        //space
+        'spacethruster.jpg',
+        'cubsat.mp4',       
+        'thruster.jpg',
+                      
+    ];
+
+        const img = document.getElementById('image');
+        const vid = document.getElementById('video');
+
+        let i = 1;
+
+       
+
+        setInterval(function () {
+
+            console.log(files[i]);
+            if (files[i].endsWith('jpg') || files[i].endsWith('gif') || files[i].endsWith('png')) {
+                img.style.animationName = "none";
+
+                img.src = folder+files[i];
+
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        img.style.animationName = ""
+                    }, 0);
+                });
+            }
+
+            else if(files[i].endsWith('mp4')){
+                vid.style.animationName = "none";
+
+                vid.src = folder+files[i];
+
+                requestAnimationFrame(() => {
+                    setTimeout(() => {
+                        vid.style.animationName = ""
+                    }, 0);
+                });
+                vid.play();
+            }
+
+            i++;
+            if (i == files.length) {
+                i = 0;
+            }
+
+        }, 10000);
+
+        
+
+    </script>
+
+</body>
+
+</html>
